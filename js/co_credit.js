@@ -44,15 +44,31 @@
 
 */
 
+window.addEventListener("load", function() {
+   //retreieve the field/value pairs from the url
+   var orderData = location.search.slice;
+   orderData = orderData.replace(/\+g, " ");
+   orderData = decodeURIComponent(orderData);
+   var orderFields = orderData.split(/[&=]/g);
 
+   //write the fiels calues to the order form
+   document.forms.order.elements.modelName.value = orderFields[3];
+   document.forms.order.elements.modelQty.value = orderFields[5];
+   document.forms.order.elements.orderCost.value = orderFields[7];
+   document.forms.order.elements.shippingType.value = orderFields[9];
+   document.forms.order.elements.shippingCost.value = orderFields[13];
+   document.forms.order.elements.subTotal.value = orderFields[15];
+   document.forms.order.elements.salesTax.value = orderFields[17];
+   document.forms.order.elements.cartTotal.value = orderFields[19];
+} );
 
-
-
-
-
-
-
-
+window.addEventListener("load", function() {
+   this.document.getElementById("subButton").onclick = runSubmit;
+   this.document.getElementById("cardHolder").oninput = validateName;
+   this.document.getElementById("cardNumber").oninput = runSubmit;
+   this.document.getElementById("subButton").onclick = runSubmit;
+   this.document.getElementById("subButton").onclick = runSubmit;
+})
 
 
 /* Functions already provided in the file */

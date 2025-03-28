@@ -51,13 +51,32 @@ function calcCart() {
 
    //Calculate the initial cost of the order
    var mCost = cartForm.elements.modelCost.value;
-   var
+   var qIndex = cartForm.elements.modelQty.selectedIndex;
+   var quantity = cartForm.elements.modelQty[qIndex].value;
+
+   //initial cost = model x quantity
+   var orderCost = mCost*quantity;
+   cartForm.elements.orderCost.value = formatUSCurrency(orderCost);
+
+   //retreive the cost of shipping
+   var shipCost = document.querySelector('input[name="shipping"]:checked').value*quantity;
+   cartForm.elements.shippingCost.value = formatNumber(shipCost, 2);
+
+   //calculate the order subtotal
+   cartForm.elements.subtotal.value = formatNumber(orderCost + shipCost, 2);
+
+   //calculate the sales tax
+   var salesTax = 0.05*(orderCost+shipCost);
+   cartForm.elements.salesTax.value = formatNumber(salesTax, 2);
+   
+   //calculate the cost of the total order
+   var cartTotal = orderCost + shipCost + salesTax;
+   cartForm.elements.cartTotal.value = formatNumber(cartTotal);
+
+   //store the order details
+   cartForm.elements.shippingType.value = 
+      document.querySelector('input[name="shipping"]:checked').nextSibling.nodeValue; 
 }
-
-
-
-
-
 
 function formatNumber(val, decimals) {
    return val.toLocaleString(undefined, {minimumFractionDigits: decimals, 

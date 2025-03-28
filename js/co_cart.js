@@ -29,7 +29,7 @@
 */ 
 
 
-window.addEventListener("load", funtion() {
+window.addEventListener("load", function() {
    var cartForm = document.forms.cart;
    
    //calculate the cost of the order
@@ -63,7 +63,7 @@ function calcCart() {
    cartForm.elements.shippingCost.value = formatNumber(shipCost, 2);
 
    //calculate the order subtotal
-   cartForm.elements.subtotal.value = formatNumber(orderCost + shipCost, 2);
+   cartForm.elements.subTotal.value = formatNumber(orderCost + shipCost, 2);
 
    //calculate the sales tax
    var salesTax = 0.05*(orderCost+shipCost);
